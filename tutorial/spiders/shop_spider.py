@@ -65,8 +65,12 @@ class ShopSpider(scrapy.Spider):
             'User-Agent': user_agent
         }
 
-        # product_name = self.product_names[self.page_number % len(self.product_names)]
-        product_name = response.meta['product_name']
+        # Note to self: scrape pages of products non-incrementally to avoid bot detection
+        # Future: Randomize product + page number call to guarantee efficient scraping
+
+        product_name = self.product_names[self.page_number % len(self.product_names)]
+        self.log(f'Now scraping: {product_name}')
+        # product_name = response.meta['product_name']
 
         raw_text = response.text
         
@@ -89,5 +93,5 @@ class ShopSpider(scrapy.Spider):
         self.page_number += 1 # Increment page number
         next_page_url = f'https://www.amazon.com/s?k={product_name}&page={self.page_number}'
         
-        if self.page_number <= 20:
+        if self.page_number < 20:
             yield scrapy.Request(url=next_page_url, callback=self.parse)
