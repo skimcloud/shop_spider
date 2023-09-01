@@ -52,41 +52,36 @@ class ShopSpider(scrapy.Spider):
     
     def start_requests(self):
         url = "https://kobolldo-dev.herokuapp.com/apis/dashboard/items?section=SUGGESTIONS&offset=0&limit=10"
-        yield scrapy.Request(url=url, callback=self.getItems)
+        yield scrapy.Request(url=url, callback=self.getPrices)
 
-        self.log("Length products: ")
-        self.log(len(self.product_names))
-        for product_name in self.product_names:
-            self.log("Inside Loop")
-            self.page_number = 1 # Reset page number for next product
-            url = f"https://www.amazon.com/s?k={product_name}"
-            yield scrapy.Request(url=url, callback=self.parse, meta={'product_name': product_name})
-
-
-    def getItems(self, response):
+    def getPrices(self, response):
         pattern = r'"shortDescription":"([^"]*)"'
         names = re.findall(pattern, response.text)
         processed_names = [name.replace(" ", "+") for name in names]
-        self.product_names = processed_names
-        for product in self.product_names:
-            self.log(product)
 
+        for product_name in processed_names:
+            user_agent = random.choice(self.user_agents)
+            headers = {'User-Agent': user_agent}
+            self.page_number = 1 # Reset page number with each product
+            yield scrapy.Request(
+                url=f"https://www.amazon.com/s?k={product_name}",
+                callback=self.parse,
+                meta={'product_name': product_name, 'page_number': self.page_number},
+                headers=headers
+            )
 
     def parse(self, response):
         # page = response.url.split("=")[-1]
         # filename = f"response-{page}.html"
         # Path(filename).write_bytes(response.body)
-        user_agent = random.choice(self.user_agents)
-        headers = {
-            'User-Agent': user_agent
-        }
 
         # Note to self: scrape pages of products non-incrementally to avoid bot detection
         # Future: Randomize product + page number call to guarantee efficient scraping
 
-        product_name = self.product_names[self.page_number % len(self.product_names)]
-        self.log(f'Now scraping: {product_name}')
-        # product_name = response.meta['product_name']
+        # product_name = self.product_names[self.page_number % len(self.product_names)]
+        product_name = response.meta['product_name']
+        self.page_number = response.meta['page_number']
+        self.log(f'Now scraping: {product_name} - Page {self.page_number}')
 
         raw_text = response.text
         
@@ -109,5 +104,12 @@ class ShopSpider(scrapy.Spider):
         self.page_number += 1 # Increment page number
         next_page_url = f'https://www.amazon.com/s?k={product_name}&page={self.page_number}'
         
-        if self.page_number < 20:
-            yield scrapy.Request(url=next_page_url, callback=self.parse)
+        if self.page_number < 10:
+            user_agent = random.choice(self.user_agents)
+            headers = {'User-Agent': user_agent}
+            yield scrapy.Request(
+                url=next_page_url,
+                callback=self.parse,
+                meta={'product_name': product_name, 'page_number': self.page_number},
+                headers=headers
+            )
