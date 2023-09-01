@@ -7,7 +7,7 @@ import random
 
 class ShopSpider(scrapy.Spider):
     name = "shoppy"
-    product_names = ["iPad", "iPhone", "MacBook"]  # Eventually add product names here through API
+    product_names = []
     page_number = 1
 
     user_agents = [
@@ -51,10 +51,26 @@ class ShopSpider(scrapy.Spider):
     ]
     
     def start_requests(self):
+        url = "https://kobolldo-dev.herokuapp.com/apis/dashboard/items?section=SUGGESTIONS&offset=0&limit=10"
+        yield scrapy.Request(url=url, callback=self.getItems)
+
+        self.log("Length products: ")
+        self.log(len(self.product_names))
         for product_name in self.product_names:
+            self.log("Inside Loop")
             self.page_number = 1 # Reset page number for next product
             url = f"https://www.amazon.com/s?k={product_name}"
             yield scrapy.Request(url=url, callback=self.parse, meta={'product_name': product_name})
+
+
+    def getItems(self, response):
+        pattern = r'"shortDescription":"([^"]*)"'
+        names = re.findall(pattern, response.text)
+        processed_names = [name.replace(" ", "+") for name in names]
+        self.product_names = processed_names
+        for product in self.product_names:
+            self.log(product)
+
 
     def parse(self, response):
         # page = response.url.split("=")[-1]
