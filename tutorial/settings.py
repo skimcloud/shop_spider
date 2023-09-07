@@ -12,7 +12,7 @@ BOT_NAME = "tutorial"
 SPIDER_MODULES = ["tutorial.spiders"]
 NEWSPIDER_MODULE = "tutorial.spiders"
 
-RETRY_TIMES = 200
+RETRY_TIMES = 300
 RETRY_HTTP_CODES = [500, 503, 504, 400, 408]
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
