@@ -1,0 +1,90 @@
+19.99
+19.99 at time 18:13:34 from https://www.amazon.com/
+19.99
+19.99 at time 18:13:34 from https://www.amazon.com/
+16.14
+16.14 at time 18:13:34 from https://www.amazon.com/
+19.99
+19.99 at time 18:13:34 from https://www.amazon.com/
+39.99
+39.99 at time 18:13:34 from https://www.amazon.com/
+39.99
+39.99 at time 18:13:34 from https://www.amazon.com/
+17.59
+17.59 at time 18:13:34 from https://www.amazon.com/
+39.09
+39.09 at time 18:13:34 from https://www.amazon.com/
+32.0
+32.0 at time 18:13:34 from https://www.amazon.com/
+21.24
+21.24 at time 18:13:34 from https://www.amazon.com/
+24.99
+24.99 at time 18:13:34 from https://www.amazon.com/
+32.99
+32.99 at time 18:13:34 from https://www.amazon.com/
+11.99
+11.99 at time 18:13:34 from https://www.amazon.com/
+29.99
+29.99 at time 18:13:34 from https://www.amazon.com/
+11.99
+11.99 at time 18:13:34 from https://www.amazon.com/
+29.99
+29.99 at time 18:13:34 from https://www.amazon.com/
+29.99
+29.99 at time 18:13:34 from https://www.amazon.com/
+11.95
+11.95 at time 18:13:34 from https://www.amazon.com/
+11.95
+11.95 at time 18:13:34 from https://www.amazon.com/
+36.99
+36.99 at time 18:13:34 from https://www.amazon.com/
+36.99
+36.99 at time 18:13:34 from https://www.amazon.com/
+13.99
+13.99 at time 18:13:34 from https://www.amazon.com/
+29.99
+29.99 at time 18:13:34 from https://www.amazon.com/
+13.99
+13.99 at time 18:13:34 from https://www.amazon.com/
+29.99
+29.99 at time 18:13:34 from https://www.amazon.com/
+29.99
+29.99 at time 18:13:34 from https://www.amazon.com/
+*****max: 39.99
+*****min: 11.95
+6.99
+6.99 at time 18:13:34 from https://www.amazon.com/realme-narzo-50/s?k=realme+narzo+50%22
+6.99
+6.99 at time 18:13:34 from https://www.amazon.com/realme-narzo-50/s?k=realme+narzo+50%22
+8.99
+8.99 at time 18:13:34 from https://www.amazon.com/realme-narzo-50/s?k=realme+narzo+50%22
+11.99
+11.99 at time 18:13:34 from https://www.amazon.com/realme-narzo-50/s?k=realme+narzo+50%22
+11.99
+11.99 at time 18:13:34 from https://www.amazon.com/realme-narzo-50/s?k=realme+narzo+50%22
+7.59
+7.59 at time 18:13:34 from https://www.amazon.com/realme-narzo-50/s?k=realme+narzo+50%22
+5.49
+5.49 at time 18:13:34 from https://www.amazon.com/realme-narzo-50/s?k=realme+narzo+50%22
+5.49
+5.49 at time 18:13:34 from https://www.amazon.com/realme-narzo-50/s?k=realme+narzo+50%22
+11.99
+11.99 at time 18:13:34 from https://www.amazon.com/realme-narzo-50/s?k=realme+narzo+50%22
+12.95
+12.95 at time 18:13:34 from https://www.amazon.com/realme-narzo-50/s?k=realme+narzo+50%22
+8.67
+8.67 at time 18:13:34 from https://www.amazon.com/realme-narzo-50/s?k=realme+narzo+50%22
+11.95
+11.95 at time 18:13:34 from https://www.amazon.com/realme-narzo-50/s?k=realme+narzo+50%22
+18.95
+18.95 at time 18:13:34 from https://www.amazon.com/realme-narzo-50/s?k=realme+narzo+50%22
+5.48
+5.48 at time 18:13:34 from https://www.amazon.com/realme-narzo-50/s?k=realme+narzo+50%22
+5.48
+5.48 at time 18:13:34 from https://www.amazon.com/realme-narzo-50/s?k=realme+narzo+50%22
+9.95
+9.95 at time 18:13:34 from https://www.amazon.com/realme-narzo-50/s?k=realme+narzo+50%22
+8.49
+8.49 at time 18:13:34 from https://www.amazon.com/realme-narzo-50/s?k=realme+narzo+50%22
+*****max: 18.95
+*****min: 5.48

@@ -89,12 +89,14 @@ class ShopSpider(scrapy.Spider):
 
         #pattern = r'https://www\.\w+\.\w+(?:/\S*)?'
         pattern = rf'https://www\.{re.escape(store)}\.com\S*'
+        # pattern = r'href\s*=\s*["\'](https?://[^"\']+)["\']'
         urls = re.findall(pattern, response.text)
+        self.log(f"Size: {len(urls)}")
         self.log(f"Store: {store}")
         self.log(f"Searching for product: {product_name}")
         for url in urls:
             self.log(url)
-            if store in url and product_name in url:
+            if store in url:
                 self.log("INSIDE PARSE GOOGLE RESULTS BRUH")
                 self.log(url)
                 user_agent = random.choice(self.user_agents)
@@ -115,7 +117,6 @@ class ShopSpider(scrapy.Spider):
         price_pattern = r'\$\d+\.\d{2}'  # Example: $123.45
         prices = re.findall(price_pattern, response.text) # Find all matches of the price pattern in the raw text
         if len(prices) > 5:
-            self.log("BROSKI!!")
             self.log("Ready to write prices: > len(5)")
             mean = sum(float(price[1:]) for price in prices[:6]) / 6.0 # mean price calculation
             lower_threshold = mean - (mean * 0.60)
@@ -145,7 +146,8 @@ class ShopSpider(scrapy.Spider):
                     f.write(f'{price} at time {current_time} from {page}\n')
                 f.write(f'*****max: {maximum}\n')
                 f.write(f'*****min: {minimum}\n')
-        
+        else:
+            return None
         self.log('Price extraction complete')
 
     # get_prices function version which does no product name processing, gets array directly
