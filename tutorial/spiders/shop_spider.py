@@ -63,6 +63,7 @@ class ShopSpider(scrapy.Spider):
         # yield scrapy.Request(url=url, callback=self.getPrices)
         yield scrapy.Request(url=url, callback=self.get_google_results)
 
+    # can replace response parameter with preprocessed array of product names
     def get_google_results(self, response):
         pattern = r'"shortDescription":"([^"]*)"'
         names = re.findall(pattern, response.text)
@@ -87,8 +88,14 @@ class ShopSpider(scrapy.Spider):
 
         # Extract all URLs from the Google search results page
 
-        #pattern = r'https://www\.\w+\.\w+(?:/\S*)?'
-        pattern = rf'https://www\.{re.escape(store)}\.com\S*'
+        # pattern = r'https://www\.\w+\.\w+(?:/\S*)?'
+        # pattern = rf'https://www\.{store}\.com'
+        # Define the regex pattern to find elements after jsname="UWckNb" (limiting to the first 10 matches)
+        pattern = r'<a jsname="UWckNb".*?href="([^"]+)".*?</a>{0,10}'
+        matches = re.findall(pattern, response.text)
+        self.log("MATCHES: ")
+        for match in matches:
+            self.log(match)
         # pattern = r'href\s*=\s*["\'](https?://[^"\']+)["\']'
         urls = re.findall(pattern, response.text)
         self.log(f"Size: {len(urls)}")
@@ -117,6 +124,7 @@ class ShopSpider(scrapy.Spider):
         price_pattern = r'\$\d+\.\d{2}'  # Example: $123.45
         prices = re.findall(price_pattern, response.text) # Find all matches of the price pattern in the raw text
         if len(prices) > 5:
+            self.log("BROSKI!!")
             self.log("Ready to write prices: > len(5)")
             mean = sum(float(price[1:]) for price in prices[:6]) / 6.0 # mean price calculation
             lower_threshold = mean - (mean * 0.60)
@@ -146,8 +154,7 @@ class ShopSpider(scrapy.Spider):
                     f.write(f'{price} at time {current_time} from {page}\n')
                 f.write(f'*****max: {maximum}\n')
                 f.write(f'*****min: {minimum}\n')
-        else:
-            return None
+
         self.log('Price extraction complete')
 
     # get_prices function version which does no product name processing, gets array directly
